@@ -35,9 +35,9 @@ export const useGlobalState = <T>(
     });
   }, [queryClient, getKey, key]);
 
-  const removeData = useCallback(() => {
-    queryClient.removeQueries({ queryKey: getKey(key) });
-  }, [queryClient, getKey, key]);
+  const resetData = () => reset();
+  const date = new Date(dataUpdatedAt);
+  const updatedAt = `${date.toLocaleString()}`;
 
-  return [data as T, setData, reset, removeData, dataUpdatedAt] as const;
+  return [data as T, setData, resetData, updatedAt] as const;
 }
